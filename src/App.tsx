@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Counter from "./components/Counter";
 import Theme from "./components/Theme";
 
@@ -6,9 +6,9 @@ function App() {
   const [count, setCount] = useState(0);
   const [theme, setTheme] = useState("light");
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
+  }, []);
 
   const increaseCount = () => setCount((prev) => prev + 1);
 
@@ -16,13 +16,12 @@ function App() {
     <div>
       <Counter count={count} />
 
-      <Theme theme={theme} />
+      <Theme theme={theme} toggleTheme={toggleTheme} />
 
       <div className="flex gap-6">
-        <button onClick={toggleTheme} className="mt-6 bg-blue-600 text-white rounded p-4">
-          Toggle Theme
-        </button>
-        <button onClick={increaseCount} className="mt-6 bg-red-600 text-white rounded p-4">
+        <button
+          onClick={increaseCount}
+          className="mt-6 bg-red-600 text-white rounded p-4">
           Increase Count
         </button>
       </div>

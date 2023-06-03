@@ -1,4 +1,6 @@
-export default function Counter(props: { count: number }) {
+import { memo } from "react";
+
+function Counter(props: { count: number }) {
   return (
     <div className="border-solid p-5 border-4 border-blue-600 rounded">
       <h1 className="text-3xl font-bold">Counter: {props.count}</h1>
@@ -6,3 +8,5 @@ export default function Counter(props: { count: number }) {
     </div>
   );
 }
+
+export default memo(Counter);
