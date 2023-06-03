@@ -1,5 +1,6 @@
-import { Suspense } from "react";
-import HeavyComponent from "./components/HeavyComponent";
+import { Suspense, lazy } from "react";
+
+const HeavyComponent = lazy(() => import("./components/HeavyComponent"));
 
 function App() {
   return (
